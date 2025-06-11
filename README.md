@@ -1,58 +1,114 @@
-# seasure_mvp
+# SeaSure
 
-The repo contains code for SeaSure MVP. SeaSure is an advanced multi-agent AI assistant for mariners. The Repo is private and contains confidential information.
+The repo contains code for SeaSure MVP. SeaSure is an advanced multi-agent AI assistant
+for mariners. The Repo is private and contains confidential information.
 
-# React + TypeScript + Vite
+## Tech Stack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Core Technologies
 
-Currently, two official plugins are available:
+- **React** (v19.1.0) - Modern UI library for building user interfaces
+- **TypeScript** (v5.8.3) - For type-safe JavaScript development
+- **Vite** (v6.3.5) - Next-generation frontend tooling for fast development and optimized builds
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### UI & Styling
 
-## Expanding the ESLint configuration
+- **Tailwind CSS** (v3.4.17) - Utility-first CSS framework
+- **Headless UI** (v2.2.4) - Unstyled, accessible UI components
+- **Heroicons** (v2.2.0) - Beautiful hand-crafted SVG icons
+- **Lucide React** (v0.514.0) - Additional icon set
+- **Class Variance Authority** (v0.7.1) - For managing component variants
+- **Tailwind Merge** (v3.3.1) - For merging Tailwind classes efficiently
+- **CLSX** (v2.1.1) - For constructing className strings conditionally
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### State Management & Data Fetching
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+- **TanStack Query** (v5.80.6) - Powerful data synchronization and server state management
+- **Axios** (v1.9.0) - Promise-based HTTP client
+
+### Routing
+
+- **React Router DOM** (v7.6.2) - Declarative routing for React applications
+
+### Development Tools
+
+- **ESLint** (v9.25.0) - For code linting and style enforcement
+- **TypeScript ESLint** (v8.30.1) - TypeScript-specific linting rules
+- **Prettier** - For code formatting
+- **Vite Plugin SVGR** (v4.3.0) - For importing SVGs as React components
+- **Vite TSConfig Paths** (v5.1.4) - For TypeScript path aliases in Vite
+
+## Project Structure
+
+```
+seasure/
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── hooks/         # Custom React hooks
+│   ├── lib/           # Utility functions and configurations
+│   ├── pages/         # Page components
+│   ├── types/         # TypeScript type definitions
+│   ├── App.tsx        # Root component
+│   └── main.tsx       # Application entry point
+├── public/            # Static assets
+├── index.html         # HTML template
+└── package.json       # Project dependencies and scripts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Build for production:
+   ```bash
+   npm run build
+   ```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
-```
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run lint` - Run ESLint
+- `npm run preview` - Preview production build
+- `npm run prettier` - Format code with Prettier
+
+## Features
+
+- 🎨 Modern UI with Tailwind CSS
+- 🔒 Type-safe development with TypeScript
+- ⚡ Fast development with Vite
+- 📱 Responsive design
+- 🌙 Dark mode support
+- 🔄 Efficient data fetching with TanStack Query
+- 🛣️ Client-side routing with React Router
+- 🎯 Component-based architecture
+- 🧪 Built-in testing setup
+- 📦 Optimized production builds
+
+## Browser Support
+
+The application supports modern browsers that implement the latest web standards, including:
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
