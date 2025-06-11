@@ -5,9 +5,9 @@ export const useApplyTheme = () => {
     const applyThemeFromBody = () => {
       if (document.documentElement.classList.contains('dark')) {
         document.body.classList.add('dark:bg-slate-900', 'dark:text-slate-100');
-        document.body.classList.remove('bg-[#F8F9FA]', 'text-gray-900');
+        document.body.classList.remove('bg-primary', 'text-gray-900');
       } else {
-        document.body.classList.add('bg-[#F8F9FA]', 'text-gray-900');
+        document.body.classList.add('bg-primary', 'text-gray-900');
         document.body.classList.remove('dark:bg-slate-900', 'dark:text-slate-100');
       }
     };

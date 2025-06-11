@@ -1,15 +1,13 @@
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { Layout } from './components/Layout';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import { Home } from './pages/Home';
-import { Register } from './pages/Register';
+import { PageLoadingSpinner } from './components/shared/LoadingSpinner';
 import { useApplyTheme } from './hooks/useApplyTheme';
-import { LoginPage } from '@/pages/auth/Login';
 
-// Create a client
+// Create a query client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -19,14 +17,23 @@ const queryClient = new QueryClient({
   },
 });
 
+// Lazy load pages
+const Home = lazy(() => import('./pages/Home').then((module) => ({ default: module.Home })));
+const LoginPage = lazy(() => import('./pages/auth/Login'));
+const RegistrationPage = lazy(() => import('./pages/auth/Register'));
+const ForgotPasswordPage = lazy(() => import('./pages/auth/ForgotPwd'));
+const ResetPasswordPage = lazy(() => import('./pages/auth/ResetPwd'));
+const EmailVerificationPage = lazy(() => import('./pages/auth/EmailVerification'));
+
 function App() {
   useApplyTheme();
+
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
         <ThemeProvider>
           <AuthProvider>
-            <Layout>
+            <Suspense fallback={<PageLoadingSpinner />}>
               <Routes>
                 <Route
                   path="/"
@@ -37,10 +44,13 @@ function App() {
                   }
                 />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<Register />} />
+                <Route path="/register" element={<RegistrationPage />} />
+                <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+                <Route path="/reset-password" element={<ResetPasswordPage />} />
+                <Route path="/email-verification" element={<EmailVerificationPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
-            </Layout>
+            </Suspense>
           </AuthProvider>
         </ThemeProvider>
       </Router>

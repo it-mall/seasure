@@ -6,4 +6,6 @@ export enum BASIC_ROUTES {
   REGISTER = '/register',
   DASHBOARD = '/',
   NOT_FOUND = '*',
+  TERMS_OF_SERVICE = '/terms',
+  PRIVACY_POLICY = '/privacy',
 }
