@@ -112,3 +112,58 @@ The application supports modern browsers that implement the latest web standards
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Docker Deployment
+
+### Building the Docker Image
+
+```bash
+# Build the image
+docker build -t seasure:latest .
+
+# Run the container
+docker run -d -p 80:80 --name seasure-app seasure:latest
+```
+
+### Docker Compose (Optional)
+
+Create a `docker-compose.yml` file for easier deployment:
+
+```yaml
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - '80:80'
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+```
+
+Then run:
+
+```bash
+docker-compose up -d
+```
+
+### Environment Variables
+
+For production deployment, you can pass environment variables to the container:
+
+```bash
+docker run -d -p 80:80 \
+  -e VITE_API_URL=https://api.example.com \
+  --name seasure-app \
+  seasure:latest
+```
+
+### Production Considerations
+
+1. Always use specific version tags in production
+2. Set up proper logging and monitoring
+3. Configure SSL/TLS using a reverse proxy
+4. Use Docker secrets for sensitive data
+5. Implement health checks
+6. Set up proper backup strategies
