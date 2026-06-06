@@ -7,7 +7,7 @@ import { Logo } from '@/components/shared/Logo';
 import { Checkbox } from '@/components/shared/Checkbox';
 import { Input } from '@/components/shared/Input';
 import { Google, UserPlus, User } from '@/assets/icons';
-import { UserType } from '@/types/auth';
+import type { UserType } from '@/types/auth';
 import { BASIC_ROUTES } from '@/routes';
 
 // RegistrationPage Component
@@ -82,10 +82,9 @@ const RegistrationPage = () => {
                 key={type}
                 onClick={() => setUserType(type)}
                 className={`flex-1 py-2.5 px-4 rounded-md text-lg font-medium transition-all duration-200 ease-in-out transform hover:scale-105 focus:outline-none
-                  ${
-                    userType === type
-                      ? 'bg-[#0077cc] dark:bg-[#00aaff] text-white shadow-lg'
-                      : 'text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
+                  ${userType === type
+                    ? 'bg-[#0077cc] dark:bg-[#00aaff] text-white shadow-lg'
+                    : 'text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                   }`}
               >
                 {type === 'boater' ? 'Boater' : 'Service Provider'}

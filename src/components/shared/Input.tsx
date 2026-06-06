@@ -1,43 +1,53 @@
 import React from 'react';
-import { Mail } from '@/assets/icons';
+import type { ComponentType } from 'react';
+import type { IconProps } from '@/assets/icons/IconPlaceholder';
 
-interface EmailProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
   error?: string;
   containerClassName?: string;
-  LeftIcon?: React.ReactNode;
+  icon?: ComponentType<IconProps>;
+  type?: string;
+  autoComplete?: string;
 }
 
-export const Input: React.FC<EmailProps> = ({
+export const Input: React.FC<InputProps> = ({
   label,
   error,
-  LeftIcon,
+  icon: Icon,
   className = '',
   containerClassName = '',
+  type = 'text',
   ...props
 }) => {
   const commonInputStyle =
-    'w-full px-4 py-3.5 rounded-lg bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-[#0077cc] dark:focus:ring-[#00aaff] text-lg text-gray-900 dark:text-slate-100 placeholder-gray-500 dark:placeholder-slate-400 transition-colors duration-150';
+    'w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition-colors duration-150';
 
   return (
-    <div className={containerClassName}>
+    <div className={`mb-4 ${containerClassName}`}>
       {label && (
         <label
           htmlFor={props.id}
-          className="block text-lg font-medium text-gray-800 dark:text-slate-200 mb-1.5"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
         >
           {label}
         </label>
       )}
-      <div className="relative flex">
-        {LeftIcon && <div className="absolute left-4 top-1/2 -translate-y-1/2 ">{LeftIcon}</div>}
+      <div className="relative">
+        {Icon && (
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Icon className="h-5 w-5 text-gray-400" />
+          </div>
+        )}
         <input
           {...props}
-          type="text"
-          className={`${commonInputStyle} ${LeftIcon ? 'pl-12' : 'pl-4'} ${error ? 'border-red-500 dark:border-red-500' : ''} ${className}`}
+          type={type}
+          className={`${commonInputStyle} ${Icon ? 'pl-10' : ''} ${error ? 'border-red-500' : 'border-gray-300'} ${className}`}
         />
       </div>
-      {error && <p className="mt-1.5 text-sm text-red-600 dark:text-red-400">{error}</p>}
+      {error && (
+        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>
+      )}
     </div>
   );
 };
