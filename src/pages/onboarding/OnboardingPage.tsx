@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import type { OnboardingStep, OnboardingData, PermissionName, PermissionStatus } from '@/types/onboarding';
+import type {
+  OnboardingStep,
+  OnboardingData,
+  PermissionName,
+  PermissionStatus,
+} from '@/types/onboarding';
 import { ProfileSetupStep } from '@/components/onboarding/ProfileSetupStep';
 import { ExperienceLevelStep } from '@/components/onboarding/ExperienceLevelStep';
 import { TermsAndAgreementsStep } from '@/components/onboarding/TermsAndAgreementsStep';
 import { DevicePermissionsStep } from '@/components/onboarding/DevicePermissionsStep';
 
-const STEPS: OnboardingStep[] = [
-  'profile',
-  'experience',
-  'terms',
-  'permissions'
-];
+const STEPS: OnboardingStep[] = ['profile', 'experience', 'terms', 'permissions'];
 
 const INITIAL_PERMISSIONS: Record<PermissionName, PermissionStatus> = {
   camera: 'notSet',
   microphone: 'notSet',
-  location: 'notSet'
+  location: 'notSet',
 };
 
 const OnboardingPage: React.FC = () => {
@@ -25,17 +25,17 @@ const OnboardingPage: React.FC = () => {
       firstName: '',
       lastName: '',
       email: '',
-      phone: ''
+      phone: '',
     },
     experience: {
       level: 'beginner',
       yearsOfExperience: 0,
-      vesselTypes: []
+      vesselTypes: [],
     },
     terms: {
-      accepted: false
+      accepted: false,
     },
-    permissions: INITIAL_PERMISSIONS
+    permissions: INITIAL_PERMISSIONS,
   });
 
   const currentStep = STEPS[currentStepIndex];
@@ -43,19 +43,19 @@ const OnboardingPage: React.FC = () => {
   const handleSave = (step: OnboardingStep, data: OnboardingData[keyof OnboardingData]) => {
     setOnboardingData((prev: OnboardingData) => ({
       ...prev,
-      [step]: data
+      [step]: data,
     }));
   };
 
   const handleNext = () => {
     if (currentStepIndex < STEPS.length - 1) {
-      setCurrentStepIndex(prev => prev + 1);
+      setCurrentStepIndex((prev) => prev + 1);
     }
   };
 
   const handleBack = () => {
     if (currentStepIndex > 0) {
-      setCurrentStepIndex(prev => prev - 1);
+      setCurrentStepIndex((prev) => prev - 1);
     }
   };
 
@@ -64,7 +64,10 @@ const OnboardingPage: React.FC = () => {
     handleNext();
   };
 
-  const handleSaveAndFinish = (step: OnboardingStep, data: OnboardingData[keyof OnboardingData]) => {
+  const handleSaveAndFinish = (
+    step: OnboardingStep,
+    data: OnboardingData[keyof OnboardingData]
+  ) => {
     handleSave(step, data);
     // Here you would typically submit the entire onboarding data to your backend
     console.log('Onboarding completed:', { ...onboardingData, [step]: data });
@@ -124,10 +127,11 @@ const OnboardingPage: React.FC = () => {
               <React.Fragment key={step}>
                 <div className="flex flex-col items-center">
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center ${index <= currentStepIndex
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
-                      }`}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      index <= currentStepIndex
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                    }`}
                   >
                     {index + 1}
                   </div>
@@ -137,10 +141,9 @@ const OnboardingPage: React.FC = () => {
                 </div>
                 {index < STEPS.length - 1 && (
                   <div
-                    className={`flex-1 h-1 mx-4 ${index < currentStepIndex
-                      ? 'bg-blue-600'
-                      : 'bg-gray-200 dark:bg-gray-700'
-                      }`}
+                    className={`flex-1 h-1 mx-4 ${
+                      index < currentStepIndex ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-700'
+                    }`}
                   />
                 )}
               </React.Fragment>
@@ -155,4 +158,4 @@ const OnboardingPage: React.FC = () => {
   );
 };
 
-export default OnboardingPage
+export default OnboardingPage;

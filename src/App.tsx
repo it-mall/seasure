@@ -26,7 +26,6 @@ const ResetPasswordPage = lazy(() => import('./pages/auth/ResetPwd'));
 const EmailVerificationPage = lazy(() => import('./pages/auth/EmailVerification'));
 const OnboardingPage = lazy(() => import('./pages/onboarding/OnboardingPage'));
 
-
 function App() {
   useApplyTheme();
 

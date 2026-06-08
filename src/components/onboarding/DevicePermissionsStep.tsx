@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import type { DevicePermissionsStepProps, PermissionToggleProps, PermissionName, PermissionStatus } from '../../types/onboarding';
+import type {
+  DevicePermissionsStepProps,
+  PermissionToggleProps,
+  PermissionName,
+  PermissionStatus,
+} from '../../types/onboarding';
 import { Camera, Mic, Globe } from '../../assets/icons';
 
 const PermissionToggle: React.FC<PermissionToggleProps> = ({
@@ -8,7 +13,7 @@ const PermissionToggle: React.FC<PermissionToggleProps> = ({
   description,
   icon: Icon,
   status,
-  onToggle
+  onToggle,
 }) => {
   const getStatusColor = (status: PermissionStatus) => {
     switch (status) {
@@ -40,12 +45,8 @@ const PermissionToggle: React.FC<PermissionToggleProps> = ({
       <div className="flex-grow">
         <div className="flex justify-between items-start">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              {title}
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-              {description}
-            </p>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{description}</p>
           </div>
           <div className="flex items-center space-x-3">
             <span className={`text-sm font-medium ${getStatusColor(status)}`}>
@@ -53,10 +54,11 @@ const PermissionToggle: React.FC<PermissionToggleProps> = ({
             </span>
             <button
               onClick={onToggle}
-              className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${status === 'allowed'
-                ? 'bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50'
-                : 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-400 dark:hover:bg-green-900/50'
-                }`}
+              className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                status === 'allowed'
+                  ? 'bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50'
+                  : 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-400 dark:hover:bg-green-900/50'
+              }`}
             >
               {status === 'allowed' ? 'Deny' : 'Allow'}
             </button>
@@ -71,14 +73,14 @@ export const DevicePermissionsStep: React.FC<DevicePermissionsStepProps> = ({
   onSave,
   onSaveAndFinish,
   onBack,
-  initialPermissions
+  initialPermissions,
 }) => {
   const [permissions, setPermissions] = useState(initialPermissions);
 
   const handleTogglePermission = (permissionName: PermissionName) => {
-    setPermissions(prev => ({
+    setPermissions((prev) => ({
       ...prev,
-      [permissionName]: prev[permissionName] === 'allowed' ? 'denied' : 'allowed'
+      [permissionName]: prev[permissionName] === 'allowed' ? 'denied' : 'allowed',
     }));
   };
 
@@ -94,32 +96,34 @@ export const DevicePermissionsStep: React.FC<DevicePermissionsStepProps> = ({
     {
       name: 'camera' as PermissionName,
       title: 'Camera Access',
-      description: 'Allow SeaSure to access your camera for documenting maintenance tasks and inspections.',
-      icon: Camera
+      description:
+        'Allow SeaSure to access your camera for documenting maintenance tasks and inspections.',
+      icon: Camera,
     },
     {
       name: 'microphone' as PermissionName,
       description: 'Enable voice notes and audio instructions for maintenance tasks.',
       icon: Mic,
-      title: 'Microphone Access'
+      title: 'Microphone Access',
     },
     {
       name: 'location' as PermissionName,
       description: 'Share your location to receive relevant local weather and marine conditions.',
       icon: Globe,
-      title: 'Location Access'
-    }
+      title: 'Location Access',
+    },
   ];
 
   return (
     <div className="max-w-3xl mx-auto">
       <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Device Permissions</h2>
       <p className="text-gray-600 dark:text-gray-300 mb-8">
-        SeaSure needs certain permissions to provide you with the best experience. You can change these settings later in your account preferences.
+        SeaSure needs certain permissions to provide you with the best experience. You can change
+        these settings later in your account preferences.
       </p>
 
       <div className="space-y-4">
-        {permissionConfigs.map(config => (
+        {permissionConfigs.map((config) => (
           <PermissionToggle
             key={config.name}
             permissionName={config.name}
@@ -156,4 +160,4 @@ export const DevicePermissionsStep: React.FC<DevicePermissionsStepProps> = ({
       </div>
     </div>
   );
-}; 
+};
