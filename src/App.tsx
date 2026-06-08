@@ -11,7 +11,7 @@ import { TestPage } from './pages/TestPage';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: true,
       retry: false,
     },
   },
