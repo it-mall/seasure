@@ -166,4 +166,3 @@ docker run -d -p 80:80 \
 3. Configure SSL/TLS using a reverse proxy
 4. Use Docker secrets for sensitive data
 5. Implement health checks
-6. Set up proper backup strategies
